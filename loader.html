@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .loader {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+      }
+      .loader::after {
+        content: "";
+        background-image: ur;
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        border: 15px solid white;
+        border-top-color: red;
+        animation: rotate 0.75s ease infinite;
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0turn);
+        }
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      .container {
+        display: none;
+      }
+      .title,
+      .para {
+        color: black;
+        background-color: red;
+        transition: background-color 5s ease-in-out;
+      }
+      .btn2 {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader" id="loader"></div>
+    <div class="container" id="container">
+      <h1 class="title">welcome</h1>
+      <p class="para">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla nam
+        itaque obcaecati, laboriosam suscipit rem explicabo fugiat soluta,
+        praesentium nobis expedita temporibus, doloribus et dolores ad
+        architecto pariatur? Explicabo adipisci ipsa impedit eos consequuntur
+        sit alias, quisquam libero? Ullam, ad facere at nesciunt, provident quam
+        officiis reprehenderit, debitis totam asperiores aperiam modi autem nisi
+        odit quae quidem exercitationem animi! Saepe itaque rerum iure odio et
+        illum facere debitis! Reprehenderit modi eos dicta sit doloribus
+        architecto officiis beatae? Minima dicta, maxime pariatur beatae facere
+        quisquam ex ad praesentium cumque ab illo consequatur. Dicta, laudantium
+        ab? Cumque corporis minus quo, quisquam sunt voluptatibus quod
+        praesentium ad error eos temporibus nulla nemo eius tempora molestiae
+        vitae magnam exercitationem odit quidem mollitia! Qui, harum! Beatae vel
+        accusantium minus voluptatum perferendis fuga nisi et vero natus officia
+        eius ducimus esse ipsa, maiores, possimus, adipisci porro. Magni
+        deserunt ea neque suscipit voluptates aliquid corporis, numquam ab culpa
+        natus, cum aspernatur rerum atque quas temporibus hic consequuntur nulla
+        minus ratione nihil a explicabo odit. Reiciendis accusamus qui
+        molestias! Totam eveniet optio similique odio doloribus quod possimus
+        aperiam quaerat modi ab nam, id quis labore iste. Libero, id? Aspernatur
+        laudantium rerum laborum nulla pariatur excepturi corporis architecto
+        impedit sapiente ullam consequatur, iusto mollitia autem suscipit quod
+        quasi explicabo ex non distinctio necessitatibus repellendus! Voluptates
+        assumenda facere perspiciatis eum voluptatem quasi officiis eveniet ut
+        aspernatur autem optio minima quas, doloremque mollitia iure eaque.
+        Similique, minima eveniet sunt ipsum, qui, excepturi harum quae
+        repudiandae quo suscipit vero commodi incidunt ratione saepe laboriosam
+        id ad dignissimos maiores! Eos numquam, nisi ipsam nesciunt sunt odit,
+        libero perferendis quisquam rem enim voluptatum repudiandae animi vel
+        porro asperiores, cum quas! Natus molestiae corporis totam quod illum
+        vel enim facere quam ratione, quae commodi. Accusantium nulla unde earum
+        autem iure perspiciatis aut velit quidem non.
+      </p>
+    </div>
+
+    <button class="btn1" id="btn1">click me to see button 2</button>
+    <button class="btn2" id="btn2">click me to see button 1</button>
+
+    <script>
+      const loader = document.getElementById("loader");
+      const con = document.getElementById("container");
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+
+      setTimeout(() => {
+        loader.style.display = "none";
+        con.style.display = "block";
+      }, 1000);
+
+      btn1.addEventListener("click", () => {
+        btn1.style.display = "none";
+        btn2.style.display = "block";
+      });
+      btn2.addEventListener("click", () => {
+        btn2.style.display = "none";
+        btn1.style.display = "block";
+      });
+    </script>
+  </body>
+</html>

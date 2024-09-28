@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        border: 1px solid red;
+      }
+      .row {
+        background-color: crimson;
+        display: grid;
+        justify-content: space-between;
+        align-items: center;
+        grid-template-columns: auto auto auto;
+        padding: 2rem;
+        grid-gap: 50px;
+        height: 100%;
+      }
+      .row img {
+        height: 300px;
+        width: 350px;
+        border-radius: 10px;
+      }
+      @media screen and(max-width:330px) {
+        .row {
+          grid-template-columns: auto;
+        }
+        .row img {
+          height: 100px;
+          width: 15pxpx;
+          border-radius: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <img
+        src="https://4kwallpapers.com/images/walls/thumbs_2t/10544.jpg"
+        alt=""
+      />
+      <img
+        src="https://4kwallpapers.com/images/walls/thumbs_2t/17522.jpg"
+        alt=""
+      />
+      <img
+        src="https://4kwallpapers.com/images/walls/thumbs_2t/10526.jpg"
+        alt=""
+      />
+      <img
+        src="https://4kwallpapers.com/images/walls/thumbs_2t/16690.jpg"
+        alt=""
+      />
+      <img
+        src="https://4kwallpapers.com/images/walls/thumbs_2t/15392.jpg"
+        alt=""
+      />
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9IiuzIINwzYbb8Lv7QU0-0mRbSag5v4fTHfu-DInQIo6Y5BI&s"
+        alt=""
+      />
+    </div>
+  </body>
+</html>

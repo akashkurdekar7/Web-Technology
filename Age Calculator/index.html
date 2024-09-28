@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: peachpuff;
+    }
+    form {
+      border: 1px solid tomato;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px tomato;
+      display: flex;
+      flex-direction: column;
+      padding: 5rem;
+      background-color: white;
+    }
+    .form-input {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    label {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0 1rem 0 0;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid black;
+    }
+    input::placeholder {
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+    button {
+      background-color: tomato;
+      color: white;
+      border-radius: 1rem;
+      padding: 1rem 2rem;
+      width: max-content;
+      margin: 1rem auto;
+      text-transform: uppercase;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.5s linear;
+      &:hover {
+        background-color: white;
+        color: tomato;
+        border: 1px solid tomato;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <form action="" onsubmit="getData(event)">
+        <div class="form-input">
+          <label for="text">DOB: </label>
+          <input type="text" name="dob" id="dob" placeholder="(dd/mm/yyyy)" />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script>
+      function getData(e) {
+        e.preventDefault();
+        let date = e.target[0].value;
+        let year = new Date().getFullYear;
+        console.log(date);
+        console.log(year.currentDatec);
+      }
+    </script>
+  </body>
+</html>

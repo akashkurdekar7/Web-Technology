@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Number Validator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      h3 {
+        margin-bottom: 15px;
+        color: #555;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border 0.3s;
+      }
+
+      input[type="text"]:focus {
+        border-color: #007bff; /* Highlight border on focus */
+        outline: none;
+      }
+
+      .btns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+      }
+
+      #response {
+        margin-top: 15px;
+        font-size: 16px;
+        color: #333;
+      }
+      #fail {
+        display: none;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>telephone number validator</h1>
+      <form action="" onsubmit="checkNumber(event)">
+        <h3>enter a phone number</h3>
+        <p id="fail">type a number</p>
+        <input type="text" name="" id="" />
+        <div class="display">
+          <p id="valid-response"></p>
+          <p id="invalid-response"></p>
+        </div>
+        <div class="btns">
+          <button type="submit">check</button>
+          <button type="reset" onclick="clearInput()">clear</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      const fail = document.getElementById("fail");
+      const validResponse = document.getElementById("valid-response");
+      const invalidResponse = document.getElementById("invalid-response");
+      const input = document.querySelector("input");
+
+      const checkNumber = (e) => {
+        e.preventDefault();
+        let phoneNumber = input.value.trim();
+        if (!phoneNumber) {
+          fail.style.display = "block";
+        } else {
+          fail.style.display = "none";
+          if (phoneNumber.length != 10 || isNaN(phoneNumber)) {
+            invalidResponse.innerText = `${phoneNumber} is not a valid number`;
+            validResponse.innerText = "";
+          } else {
+            validResponse.innerText = `${phoneNumber} is a valid number`;
+            invalidResponse.innerText = "";
+          }
+        }
+      };
+      const clearInput = () => {
+        input.value = "";
+        validResponse.innerText = "";
+        invalidResponse.innerText = "";
+        fail.style.display = "none";
+      };
+    </script>
+  </body>
+</html>

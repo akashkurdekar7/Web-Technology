@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --p: 3px;
+        --b: 6px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        gap: 2rem;
+        /* background-color: black; */
+      }
+      .btn1 {
+        font-size: 3rem;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgb(181, 0, 247);
+        border: none;
+        cursor: pointer;
+      }
+      .btn2 {
+        font-size: 3rem;
+        color: white;
+        padding: 30px 50px;
+        border-radius: 10px;
+        background-color: rgb(255, 1, 124);
+        border: none;
+        cursor: pointer;
+        text-transform: capitalize;
+      }
+      .btn4 {
+        font-size: 3rem;
+        color: white;
+        padding: 40px 50px;
+        border-radius: 50% 5px 50% 50%;
+        background-color: rgb(255, 1, 124);
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+      .btn5 {
+        font-size: 3rem;
+        color: black;
+        padding: 30px 50px;
+        border-radius: 50px;
+        background-color: transparent;
+        /* border-width: 10px;
+        border-style: solid;
+        border-color: grey black; */
+        border: 10px black;
+        cursor: pointer;
+        text-transform: capitalize;
+      }
+      .btn3 {
+        font-size: 3rem;
+        padding: 30px 80px;
+        border: none;
+        cursor: pointer;
+        position: relative;
+      }
+      .btn3::after,
+      .btn3::before {
+        content: "";
+        border: 1px solid black;
+        position: absolute;
+        top: 0;
+        height: 100%;
+      }
+
+      .btn3:hover,
+      .btn3::after:hover {
+        top: 0;
+        left: 50px;
+        transition: left 0.5s linear;
+      }
+      .btn3:hover,
+      .btn3::before:hover {
+        top: 0;
+        right: 50px;
+        transition: right 0.5s linear;
+      }
+      .shapes {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 80%;
+        padding: 20px;
+        gap: 2rem;
+        text-align: center;
+        font-size: 3rem;
+        color: white;
+      }
+      .square {
+        width: 200px;
+        height: 200px;
+        justify-content: center;
+        align-content: center;
+        background-color: red;
+      }
+      .circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: deeppink;
+        justify-content: center;
+        align-content: center;
+      }
+      .oval {
+        width: 200px;
+        height: 200px;
+        padding: 10px 100px;
+        border-radius: 50%;
+        background-color: blue;
+        justify-content: center;
+        align-content: center;
+      }
+      .rectangle {
+        width: 400px;
+        height: 200px;
+        background-color: rgb(255, 81, 0);
+        justify-content: center;
+        align-content: center;
+      }
+      .Triangle {
+        width: 10px;
+        height: 10px;
+        border-top: 30px solid transparent;
+        border-right: 30px solid red;
+        border-bottom: 30px solid red;
+        border-left: 30px solid transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="buttons">
+      <button class="btn1">Download Source</button>
+      <button class="btn2">order on web</button>
+      <button class="btn4">A</button>
+      <button class="btn5">See full menu</button>
+
+      <button class="btn3">Hire me</button>
+    </div>
+    <div class="shapes">
+      <div class="square">Square</div>
+      <div class="rectangle">Rectangle</div>
+      <div class="circle">Circle</div>
+      <div class="oval">Oval</div>
+      <div class="Triangle"></div>
+    </div>
+  </body>
+</html>

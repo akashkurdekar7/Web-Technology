@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Form Validation</title>
+    <style></style>
+</head>
+<body>
+    <div class="container">
+      <form action="" onsubmit="getData(event)">
+        <h1 class="title">Form Data</h1>
+        <div class="emailInput">
+          <input type="email" placeholder=" " id="email" required />
+          <label for="email" class="emailLabel">Email</label>
+        </div>
+        <p id="emailSuccess" class="feedback success">Email looks good!</p>
+        <p id="emailFail" class="feedback error">Enter a valid email!</p>
+        
+        <div class="passwordInput">
+          <input type="password" placeholder=" " id="password" required />
+          <label for="password">Password</label>
+          <span>
+            <i class="fa-solid fa-eye-slash"></i>
+            <i class="fa-solid fa-eye"></i>
+          </span>
+        </div>
+        
+        <p id="passwordSuccess" class="feedback success">Password looks good!</p>
+        <p id="passwordFail" class="feedback error">Please enter a password!</p>
+        <p id="passwordFail2" class="feedback error"> 
+          Password must contain:
+          <ul id="matchList">
+              <li>At least one uppercase letter</li>
+              <li>One lowercase letter</li>
+              <li>One digit</li>
+              <li>One special character</li>
+              <li>At least 8 characters long</li>
+          </ul>
+        </p>
+        
+        <button type="submit" id="submit" disabled>Submit</button>
+      </form>
+    </div>
+    <script>
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const submitButton = document.getElementById("submit");
+      const emailSuccess = document.getElementById("emailSuccess");
+      const emailFail = document.getElementById("emailFail");
+      const passwordSuccess = document.getElementById("passwordSuccess");
+      const passwordFail = document.getElementById("passwordFail");
+      const passwordFail2 = document.getElementById("passwordFail2");
+      const matchList = document.getElementById("matchList");
+
+      const passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&])[A-Za-z\d$@!%*?&]{8,}$/;
+
+      const toggleSubmit = () => {
+        submitButton.disabled = !(emailInput.value && passwordInput.value);
+      };
+
+      emailInput.addEventListener("input", toggleSubmit);
+      passwordInput.addEventListener("input", toggleSubmit);
+
+      const getData = (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        // Email validation
+        if (emailInput.value == "") {
+          emailFail.style.display = "block";
+          emailSuccess.style.display = "none";
+          valid = false;
+        } else {
+          emailFail.style.display = "none";
+          emailSuccess.style.display = "block";
+        }
+
+        // Password validation
+        if (passwordInput.value === "") {
+          passwordFail.style.display = "block";
+          passwordFail2.style.display = "none";
+          passwordSuccess.style.display = "none";
+          valid = false;
+        } else if (!passwordReg.test(passwordInput.value)) {
+          passwordFail.style.display = "none";
+          passwordFail2.style.display = "block"; // Show complexity requirement
+          passwordSuccess.style.display = "none";
+          valid = false;
+        } else {
+          passwordFail.style.display = "none";
+          passwordFail2.style.display = "none"; // Hide both error messages
+          passwordSuccess.style.display = "block"; // Show success message
+        }
+
+        if (valid) {
+          console.log("Email:", emailInput.value);
+          console.log("Password:", passwordInput.value);
+        }
+      };
+
+      const show = document.querySelector(".fa-eye");
+      const hide = document.querySelector(".fa-eye-slash");
+      show.addEventListener("click", () => {
+        hide.style.display = "block";
+        show.style.display = "none";
+        passwordInput.type = "text";
+      });
+      hide.addEventListener("click", () => {
+        hide.style.display = "none";
+        show.style.display = "block";
+        passwordInput.type = "password";
+      });
+    </script>
+</body>
+</html>

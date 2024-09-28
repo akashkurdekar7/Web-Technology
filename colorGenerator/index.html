@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Color generator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="color"></div>
+      <button onclick="generateColor()">change</button>
+      <h1>what the hex code: <span id="displayHex"></span></h1>
+    </div>
+
+    <script>
+      const generateColor = () => {
+        setInterval(() => {
+          let str = "abcdef123456789";
+          let colorCode = "";
+          for (let i = 0; i < 6; i++) {
+            const randomNumber = Math.trunc(Math.random() * str.length);
+            colorCode += str[randomNumber];
+          }
+
+          let hexCode = "#" + colorCode;
+          const displayHex = document.getElementById("displayHex");
+          const colorBox = document.querySelector(".color");
+          colorBox.style.backgroundColor = hexCode;
+          document.body.style.backgroundColor = hexCode;
+          displayHex.innerText = hexCode;
+        }, 500);
+      };
+    </script>
+  </body>
+</html>

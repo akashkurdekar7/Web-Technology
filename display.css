@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+nav {
+  /* border-radius+: 5px; */
+  background-color: orange;
+  border: none;
+  font-weight: bold;
+  justify-content: flex-end;
+  gap: 1rem;
+  display: flex;
+  height: 4rem;
+  align-items: center;
+}
+.child {
+  margin-right: 20px;
+  /* justify-content: space-between; */
+
+  text-transform: uppercase;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: black;
+  cursor: pointer;
+  font-weight: 700;
+}

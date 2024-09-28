@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>palindrome checker</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+
+      #display,
+      #result {
+        color: green;
+        margin-top: 20px;
+        font-size: 18px;
+      }
+      p {
+        display: none;
+        margin-top: 20px;
+        color: red;
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>palindrome checker</h1>
+      <form onsubmit="checkPalindrome(event)">
+        <h3>enter in text to check for a palindrome:</h3>
+        <p>please enter the text or value!!</p>
+        <input type="text" />
+        <button class="btn" type="submit">check</button>
+      </form>
+      <h4>input data: <span id="display"></span></h4>
+      <h4 id="result"></h4>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

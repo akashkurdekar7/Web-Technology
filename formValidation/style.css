@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* gap: 2rem; */
+  border: 1px solid #ff4851;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px #ff4851;
+}
+.title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #ff4851;
+  margin-bottom: 2rem;
+  &:hover {
+    filter: drop-shadow(1px 1px 2px #ff4851);
+  }
+}
+.emailInput,
+.passwordInput {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+#emailSuccess,
+#emailFail {
+  margin-bottom: 1.25rem;
+}
+label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  color: gray;
+}
+input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 250px;
+}
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: 0px;
+  font-size: 1rem;
+  color: #ff4851;
+  background-color: #fff;
+}
+span {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+span i {
+  cursor: pointer;
+  opacity: 75%;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 100%;
+  }
+}
+button {
+  margin-top: 2rem;
+
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  border: 5px solid #ff4851;
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  &:hover {
+    color: #ff4851;
+    background-color: white;
+    border: 5px double #ff4851;
+    filter: drop-shadow(0 0 5px red);
+  }
+}
+
+p,
+.matchList li {
+  font-size: 0.8rem;
+  text-align: center;
+  display: none;
+  text-transform: capitalize;
+  width: 100%;
+}
+#emailSuccess,
+#passwordSuccess {
+  color: green;
+}
+#emailFail,
+#passwordFail,
+#passwordFail2 {
+  color: red;
+}
+#passwordFail2 {
+  font-size: 1rem;
+  max-width: 200px;
+  text-align: center;
+}
+.fa-eye-slash {
+  display: none;
+}

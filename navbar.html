@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      nav {
+        display: flex;
+        /* justify-content: space-between; */
+        padding: 1rem 3rem;
+        align-items: center;
+        /* border: 3px solid red; */
+        background-color: purple;
+      }
+      h1 {
+        margin-right: 15px;
+        background-color: black;
+        color: white;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .list-order {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        /* border: 3px solid red; */
+        gap: 3rem;
+        list-style: none;
+        text-decoration: none;
+        color: white;
+      }
+      li {
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      button {
+        flex: right;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+      .link-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h1 class="title">B</h1>
+      <div class="link-btn">
+        <div class="links">
+          <ul class="list-order">
+            <li><a href="">Docs</a></li>
+            <li><a href="">Examples</a></li>
+            <li><a href="">Icons</a></li>
+            <li><a href="">Themes</a></li>
+            <li><a href="">Blog</a></li>
+          </ul>
+        </div>
+        <div class="socails">
+          <button>Login</button>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

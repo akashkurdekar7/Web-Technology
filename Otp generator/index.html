@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Otp generator</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Otp generator</h1>
+      <div class="con">
+        <button class="btn" onclick="otpGenerator(EventCounts)">
+          generate
+        </button>
+        <form class="otpCon" id="otpCon" onsubmit="verifyOtp(event)">
+          <p id="otpSuccessTrigger">Otp Verified!!</p>
+          <p id="otpFailTrigger">Invalid OTP. Please try again!!</p>
+           <p id="otpExpiredTrigger" style="display:none; color:orange;"></p>
+            OTP has expired. Please generate a new one!
+          </p>
+          <input type="text" name="" id="input" />
+          <!-- <input type="tel" maxlength="1" name="" id="input1" />
+          <input type="tel" maxlength="1" name="" id="input2" />
+          <input type="tel" maxlength="1" name="" id="input3" />
+          <input type="tel" maxlength="1" name="" id="input4" /> -->
+          <button class="btn" type="submit" id="submitBtn">Submit</button>
+        </form>
+      </div>
+    </div>
+
+   <script src="script.js"></script>
+  </body>
+</html>
