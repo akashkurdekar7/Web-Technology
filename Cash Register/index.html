@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cash Register</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Styling the container */
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      input {
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      #change-due {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cash Register</h1>
+      <label for="cash">Cash Provided:</label>
+      <input type="number" id="cash" placeholder="Enter cash provided" />
+
+      <p id="change-due"></p>
+      <button id="purchase-btn">Purchase</button>
+    </div>
+
+    <script>
+      //   const counterCash = {
+      //     1000: 0,
+      //     500: 0,
+      //     200: 1,
+      //     100: 1,
+      //     50: 0,
+      //     20: 0,
+      //     10: 0,
+      //     5: 0,
+      //     1: 0,
+      //   };
+
+      //   const displayAvailableCash = (cashObject, type) => {
+      //     for (let denom in cashObject) {
+      //       let elementId =
+      //         denom == 1000
+      //           ? "thousands"
+      //           : denom == 500
+      //           ? "five-hundreds"
+      //           : denom == 200
+      //           ? "two-hundreds"
+      //           : denom == 100
+      //           ? "hundreds"
+      //           : denom == 50
+      //           ? "fifties"
+      //           : denom == 20
+      //           ? "twenties"
+      //           : denom == 10
+      //           ? "tens"
+      //           : denom == 5
+      //           ? "fives"
+      //           : denom == 1
+      //           ? "ones"
+      //           : null;
+
+      //       if (elementId) {
+      //         document.getElementById(`${elementId}${type}`).innerText =
+      //           cashObject[denom];
+      //       }
+      //     }
+      //   };
+
+      //   displayAvailableCash(counterCash, "counterCash");
+
+      //   const countCash = (e) => {
+      //     e.preventDefault();
+      //     const purchaseAmt = parseInt(document.getElementById("purchase").value);
+      //     const customerCash = parseInt(
+      //       document.getElementById("customerCash").value
+      //     );
+
+      //     let returnCash = customerCash - purchaseAmt;
+
+      //     if (isNaN(returnCash) || returnCash < 0) {
+      //       alert("Invalid input or not enough cash provided by the customer.");
+      //       return;
+      //     }
+
+      //     const returnCashObject = {
+      //       1000: 0,
+      //       500: 0,
+      //       200: 0,
+      //       100: 0,
+      //       50: 0,
+      //       20: 0,
+      //       10: 0,
+      //       5: 0,
+      //       1: 0,
+      //     };
+
+      //     const cash = [1000, 500, 200, 100, 50, 20, 10, 5, 1];
+      //     for (let i = 0; i < cash.length; i++) {
+      //       let denom = cash[i];
+      //       let count = Math.floor(returnCash / denom);
+      //       if (count > 0) {
+      //         returnCashObject[denom] = count;
+      //         returnCash -= count * denom;
+      //       }
+      //     }
+
+      //     displayAvailableCash(returnCashObject, "Return");
+      //   };
+
+      let price = 19.5;
+      let cid = [
+        ["PENNY", 1.01],
+        ["NICKEL", 2.05],
+        ["DIME", 3.1],
+        ["QUARTER", 4.25],
+        ["ONE", 90],
+        ["FIVE", 55],
+        ["TEN", 20],
+        ["TWENTY", 60],
+        ["ONE HUNDRED", 100],
+      ];
+
+      const cashInput = document.getElementById("cash");
+      const purchaseBtn = document.getElementById("purchase-btn");
+      const changeDue = document.getElementById("change-due");
+
+      const currencyUnits = {
+        PENNY: 0.01,
+        NICKEL: 0.05,
+        DIME: 0.1,
+        QUARTER: 0.25,
+        ONE: 1,
+        FIVE: 5,
+        TEN: 10,
+        TWENTY: 20,
+        "ONE HUNDRED": 100,
+      };
+
+      purchaseBtn.addEventListener("click", () => {
+        const cash = parseFloat(cashInput.value);
+
+        if (price < cash) {
+          alert("Customer does not have enough money to purchase the item");
+          return;
+        }
+
+        if (cash === price) {
+          changeDue.textContent =
+            "No change due - customer paid with exact cash";
+          return;
+        }
+
+        const changeAmount = cash - price;
+        const result = calculateChange(changeAmount);
+
+        if (result.status === "INSUFFICIENT_FUNDS") {
+          changeDue.textContent = "Status: INSUFFICIENT_FUNDS";
+        } else if (result.status === "CLOSED") {
+          changeDue.textContent = `Status: CLOSED ${formatChange(
+            result.change
+          )}`;
+        } else {
+          changeDue.textContent = `Status: OPEN ${formatChange(result.change)}`;
+        }
+      });
+
+      function calculateChange(changeAmount) {
+        let change = [];
+        let totalCid = cid.reduce((sum, [, amount]) => sum + amount, 0);
+
+        if (totalCid < changeAmount) {
+          return { status: "INSUFFICIENT_FUNDS", change: [] };
+        }
+
+        if (totalCid === changeAmount) {
+          return {
+            status: "CLOSED",
+            change: cid.filter(([, amount]) => amount > 0),
+          };
+        }
+
+        const cidCopy = [...cid].reverse();
+
+        for (let i = 0; i < cidCopy.length; i++) {
+          const [unit, amount] = cidCopy[i];
+          const unitValue = currencyUnits[unit];
+          let unitCount = Math.floor(amount / unitValue);
+          let unitTotal = 0;
+
+          while (unitCount > 0 && changeAmount >= unitValue) {
+            unitTotal += unitValue;
+            changeAmount = Math.round((changeAmount - unitValue) * 100) / 100;
+            unitCount--;
+          }
+
+          if (unitTotal > 0) {
+            change.push([unit, unitTotal]);
+          }
+        }
+
+        if (changeAmount > 0) {
+          return { status: "INSUFFICIENT_FUNDS", change: [] };
+        }
+
+        return { status: "OPEN", change };
+      }
+
+      function formatChange(change) {
+        return change
+          .map(([unit, amount]) => `${unit}: $${amount.toFixed(2)}`)
+          .join(" ");
+      }
+    </script>
+  </body>
+</html>

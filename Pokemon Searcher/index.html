@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pokemon Searcher</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>pokemon searcher</h1>
+      <div class="input-con">
+        <input type="text" name="" id="input" />
+        <button type="submit" onclick="searchPokemon()">search</button>
+      </div>
+      <p id="response"></p>
+
+      <div class="content">
+        <div class="nameid">
+          <h1 id="pname"></h1>
+          <span id="pid"></span>
+        </div>
+
+        <div class="separator">
+          <p><span>Weight:</span><span id="pweight"> </span></p>
+          <p><span>height: </span><span id="pheight"></span></p>
+        </div>
+        <img src="" alt="" id="pimg" />
+
+        <div class="btn-con">
+          <h3 id="ptype"></h3>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <td>Base</td>
+            <td>Stats</td>
+          </tr>
+        </thead>
+
+        <tbody id="tbody">
+          <tr>
+            <td>HP</td>
+            <td id="hp"></td>
+          </tr>
+          <tr>
+            <td>Attack</td>
+            <td id="attack"></td>
+          </tr>
+          <tr>
+            <td>Defense</td>
+            <td id="defense"></td>
+          </tr>
+          <tr>
+            <td>Special Attack</td>
+            <td id="specialAttack"></td>
+          </tr>
+          <tr>
+            <td>Special Defense</td>
+            <td id="specialDefense"></td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td id="speed"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      const pokemons = [
+        {
+          name: "pikachu",
+          id: 1,
+          weight: 12,
+          height: 45,
+          hp: 35,
+          attack: 55,
+          defense: 40,
+          specialAttack: 50,
+          specialDefense: 50,
+          speed: 90,
+          type: ["Electric"],
+          img: "./assets/p.webp",
+        },
+        {
+          name: "charizard",
+          id: 2,
+          weight: 90,
+          height: 170,
+          hp: 78,
+          attack: 84,
+          defense: 78,
+          specialAttack: 109,
+          specialDefense: 85,
+          speed: 100,
+          type: ["Fire", "Flying"],
+          img: "./assets/charizard.webp", // Replace with actual image URL
+        },
+        {
+          name: "bulbasaur",
+          id: 3,
+          weight: 69,
+          height: 70,
+          hp: 45,
+          attack: 49,
+          defense: 49,
+          specialAttack: 65,
+          specialDefense: 65,
+          speed: 45,
+          type: ["Grass", "Poison"],
+          img: "./assets/bulbasaur.jpg",
+        },
+        {
+          name: "squirtle",
+          id: 4,
+          weight: 90,
+          height: 50,
+          hp: 44,
+          attack: 48,
+          defense: 65,
+          specialAttack: 50,
+          specialDefense: 64,
+          speed: 43,
+          type: ["Water"],
+          img: "./assets/squirtle.webp",
+        },
+        {
+          name: "gengar",
+          id: 5,
+          weight: 55,
+          height: 50,
+          hp: 115,
+          attack: 45,
+          defense: 20,
+          specialAttack: 45,
+          specialDefense: 25,
+          speed: 20,
+          type: ["Ghost", "Poison"],
+          img: "./assets/gengar-5432819_640.webpp",
+        },
+      ];
+
+      const searchPokemon = () => {
+        const input = document
+          .getElementById("input")
+          .value.trim()
+          .toLowerCase();
+        const tbody = document.getElementById("tbody");
+        const trName = document.getElementById("trName");
+        const trDataName = document.getElementById("trDataName");
+        const trStats = document.getElementById("trStats");
+        const trStatsData = document.getElementById("trStatsData");
+        const response = document.getElementById("response");
+        const pname = document.getElementById("pname");
+        const pid = document.getElementById("pid");
+        const pheight = document.getElementById("pheight");
+        const pweight = document.getElementById("pweight");
+        const ptype = document.getElementById("ptype");
+        const pimg = document.getElementById("pimg");
+
+        // Stats fields
+        const hp = document.getElementById("hp");
+        const attack = document.getElementById("attack");
+        const defense = document.getElementById("defense");
+        const specialAttack = document.getElementById("specialAttack");
+        const specialDefense = document.getElementById("specialDefense");
+        const speed = document.getElementById("speed");
+
+        const foundPokemon = pokemons.find(
+          (p) => p.name.toLowerCase() == input
+        );
+
+        if (input == "") {
+          console.log("type a pokemon name");
+          response.innerText = "type a pokemon name";
+        } else if (foundPokemon) {
+          console.log("found a pokemon");
+          response.innerText = `Found a ${foundPokemon.name} pokemon `;
+          pname.innerText = foundPokemon.name;
+          pid.innerText = `#${foundPokemon.id}`;
+          pheight.innerText = `${foundPokemon.height} cm`;
+          pweight.innerText = `${foundPokemon.weight} kg`;
+          pimg.src = foundPokemon.img;
+
+          ptype.innerText = `Type: ${foundPokemon.type.join(",")}`;
+
+          // Populate stats in the table
+          hp.innerText = foundPokemon.hp;
+          attack.innerText = foundPokemon.attack;
+          defense.innerText = foundPokemon.defense;
+          specialAttack.innerText = foundPokemon.specialAttack;
+          specialDefense.innerText = foundPokemon.specialDefense;
+          speed.innerText = foundPokemon.speed;
+        } else {
+          console.log("no such pokemons");
+          response.innerText = `No Such pokemon ${input} found!!`;
+        }
+      };
+    </script>
+  </body>
+</html>
