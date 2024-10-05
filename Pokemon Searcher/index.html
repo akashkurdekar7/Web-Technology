@@ -7,35 +7,39 @@
     <title>Pokemon Searcher</title>
   </head>
   <body>
+    <h1>Pokemon Searcher</h1>
+    <form class="input-con" onsubmit="event.preventDefault(); searchPokemon();">
+      <input type="text" id="input" placeholder="Enter Pokémon name..." />
+      <button type="submit" aria-label="Search for Pokémon">Search</button>
+    </form>
     <div class="container">
-      <h1>pokemon searcher</h1>
-      <div class="input-con">
-        <input type="text" name="" id="input" />
-        <button type="submit" onclick="searchPokemon()">search</button>
-      </div>
-      <p id="response"></p>
+      <div class="left">
+        <div class="content">
+          <div class="nameid">
+            <h1 id="pname"></h1>
+            <span id="pid"></span>
+          </div>
 
-      <div class="content">
-        <div class="nameid">
-          <h1 id="pname"></h1>
-          <span id="pid"></span>
-        </div>
+          <div class="separator">
+            <p><span>Weight: </span><span id="pweight"></span></p>
+            <p><span>Height: </span><span id="pheight"></span></p>
+          </div>
 
-        <div class="separator">
-          <p><span>Weight:</span><span id="pweight"> </span></p>
-          <p><span>height: </span><span id="pheight"></span></p>
-        </div>
-        <img src="" alt="" id="pimg" />
+          <img src="" alt="Pokemon Image" id="pimg" />
 
-        <div class="btn-con">
-          <h3 id="ptype"></h3>
+          <div class="btn-con">
+            <h3 id="ptype">
+              Type: <span class="type-fire">Fire</span>
+              <span class="type-flying">Flying</span>
+            </h3>
+          </div>
         </div>
       </div>
       <table>
         <thead>
           <tr>
-            <td>Base</td>
-            <td>Stats</td>
+            <th>Base</th>
+            <th>Stats</th>
           </tr>
         </thead>
 
@@ -67,13 +71,15 @@
         </tbody>
       </table>
     </div>
+    <p id="response"></p>
+
     <script>
       const pokemons = [
         {
           name: "pikachu",
-          id: 1,
-          weight: 12,
-          height: 45,
+          id: 25,
+          weight: 60, // in hectograms (6 kg)
+          height: 4, // in decimeters (0.4 m)
           hp: 35,
           attack: 55,
           defense: 40,
@@ -85,9 +91,9 @@
         },
         {
           name: "charizard",
-          id: 2,
-          weight: 90,
-          height: 170,
+          id: 6,
+          weight: 905, // 90.5 kg
+          height: 17, // 1.7 m
           hp: 78,
           attack: 84,
           defense: 78,
@@ -95,13 +101,13 @@
           specialDefense: 85,
           speed: 100,
           type: ["Fire", "Flying"],
-          img: "./assets/charizard.webp", // Replace with actual image URL
+          img: "./assets/charizard.webp",
         },
         {
           name: "bulbasaur",
-          id: 3,
-          weight: 69,
-          height: 70,
+          id: 1,
+          weight: 69, // 6.9 kg
+          height: 7, // 0.7 m
           hp: 45,
           attack: 49,
           defense: 49,
@@ -109,13 +115,13 @@
           specialDefense: 65,
           speed: 45,
           type: ["Grass", "Poison"],
-          img: "./assets/bulbasaur.jpg",
+          img: "./assets/bulbasaur.webp",
         },
         {
           name: "squirtle",
-          id: 4,
-          weight: 90,
-          height: 50,
+          id: 7,
+          weight: 90, // 9.0 kg
+          height: 5, // 0.5 m
           hp: 44,
           attack: 48,
           defense: 65,
@@ -127,17 +133,17 @@
         },
         {
           name: "gengar",
-          id: 5,
-          weight: 55,
-          height: 50,
-          hp: 115,
-          attack: 45,
-          defense: 20,
-          specialAttack: 45,
-          specialDefense: 25,
-          speed: 20,
+          id: 94,
+          weight: 405, // 40.5 kg
+          height: 15, // 1.5 m
+          hp: 60,
+          attack: 65,
+          defense: 60,
+          specialAttack: 130,
+          specialDefense: 75,
+          speed: 110,
           type: ["Ghost", "Poison"],
-          img: "./assets/gengar-5432819_640.webpp",
+          img: "./assets/gengar.webp",
         },
       ];
 
@@ -146,12 +152,9 @@
           .getElementById("input")
           .value.trim()
           .toLowerCase();
-        const tbody = document.getElementById("tbody");
-        const trName = document.getElementById("trName");
-        const trDataName = document.getElementById("trDataName");
-        const trStats = document.getElementById("trStats");
-        const trStatsData = document.getElementById("trStatsData");
         const response = document.getElementById("response");
+        const content = document.querySelector(".content");
+
         const pname = document.getElementById("pname");
         const pid = document.getElementById("pid");
         const pheight = document.getElementById("pheight");
@@ -167,23 +170,42 @@
         const specialDefense = document.getElementById("specialDefense");
         const speed = document.getElementById("speed");
 
+        // Reset response classes
+        response.classList.remove("success", "error", "info");
+
+        if (input === "") {
+          response.innerText = "Please type a Pokémon name.";
+          response.classList.add("info");
+          content.style.display = "none";
+          return;
+        }
+
         const foundPokemon = pokemons.find(
-          (p) => p.name.toLowerCase() == input
+          (p) => p.name.toLowerCase() === input
         );
 
-        if (input == "") {
-          console.log("type a pokemon name");
-          response.innerText = "type a pokemon name";
-        } else if (foundPokemon) {
-          console.log("found a pokemon");
-          response.innerText = `Found a ${foundPokemon.name} pokemon `;
-          pname.innerText = foundPokemon.name;
-          pid.innerText = `#${foundPokemon.id}`;
-          pheight.innerText = `${foundPokemon.height} cm`;
-          pweight.innerText = `${foundPokemon.weight} kg`;
-          pimg.src = foundPokemon.img;
+        if (foundPokemon) {
+          response.innerText = `Found ${capitalizeFirstLetter(
+            foundPokemon.name
+          )}!`;
+          response.classList.add("success");
+          content.style.display = "block";
 
-          ptype.innerText = `Type: ${foundPokemon.type.join(",")}`;
+          pname.innerText = capitalizeFirstLetter(foundPokemon.name);
+          pid.innerText = `#${foundPokemon.id}`;
+          pheight.innerText = `${foundPokemon.height / 10} m`;
+          pweight.innerText = `${foundPokemon.weight / 10} kg`;
+          pimg.src = foundPokemon.img;
+          pimg.alt = `${foundPokemon.name} image`;
+
+          ptype.innerHTML = `Type: ${foundPokemon.type
+            .map(
+              (t) =>
+                `<span class="type-${t.toLowerCase()}">${capitalizeFirstLetter(
+                  t
+                )}</span>`
+            )
+            .join(" ")}`;
 
           // Populate stats in the table
           hp.innerText = foundPokemon.hp;
@@ -193,9 +215,17 @@
           specialDefense.innerText = foundPokemon.specialDefense;
           speed.innerText = foundPokemon.speed;
         } else {
-          console.log("no such pokemons");
-          response.innerText = `No Such pokemon ${input} found!!`;
+          response.innerText = `No such Pokémon "${capitalizeFirstLetter(
+            input
+          )}" found!`;
+          response.classList.add("error");
+          content.style.display = "none";
         }
+      };
+
+      // Utility function to capitalize the first letter
+      const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
       };
     </script>
   </body>

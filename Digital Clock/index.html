@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital clock</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        gap: 2.5rem;
+        background-color: wheat;
+      }
+      .container > div {
+        display: flex;
+        gap: 2rem;
+      }
+      input {
+        max-width: 200px;
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+      button {
+        max-width: 100%;
+        width: max-content;
+        text-align: center;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+        padding: 1rem 2rem;
+        box-shadow: 2px 1px 10px black;
+        font-size: 3rem;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+      #display {
+        font-size: 1.5rem;
+        color: black;
+        font-weight: 700;
+        font-size: 10rem;
+        filter: drop-shadow(0 8rem 0 white);
+        transition: all 0.5s ease;
+      }
+      .valid {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <button type="button" onclick="startTimer()">Start</button>
+        <button type="button" onclick="stopTimer()">stop</button>
+        <button type="button" onclick="reseTimer()">reset</button>
+      </div>
+      <div>
+        <p id="display">0</p>
+      </div>
+    </div>
+
+    <script>
+      const display = document.getElementById("display");
+      let timer;
+      let count = 0;
+      const startTimer = () => {
+        timer = setInterval(() => {
+          count++;
+          display.textContent = count;
+        }, 100);
+      };
+      const stopTimer = () => {
+        clearInterval(timer);
+      };
+      const reseTimer = () => {
+        clearInterval(timer);
+        count = 0;
+        display.textContent = count;
+      };
+    </script>
+  </body>
+</html>

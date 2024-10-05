@@ -1,101 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Roman Calculator</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      .container {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: beige;
-      }
-      .form {
-        border: 3px solid brown;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 5rem 2rem;
-        border-radius: 2rem;
-        box-shadow: 2px 3px 10px brown;
-        background-color: rgb(0, 255, 229);
-      }
-      h1 {
-        text-transform: uppercase;
-        font-size: 1.5rem;
-        text-align: center;
-        color: black;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Linear gradient background */
+            background: linear-gradient(to bottom right, #f9c22e, #957FEF); 
+            font-family: Arial, sans-serif; /* Improved font */
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(240, 240, 240, 0.8); /* Semi-transparent background for contrast */
+        }
+
+        .form {
+            border: 3px solid #424b54; /* Darker border */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 5rem 2rem;
+            border-radius: 1.5rem; /* Slightly rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+            background-color: #ffffff; /* White background for the form */
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 2rem; /* Larger heading size */
+            text-align: center;
+            color: #957FEF; /* Heading color to match the theme */
+        }
+
+        input {
+            padding: 15px; /* Increased padding */
+            border: 2px solid #424b54; /* Input border color */
+            border-radius: 5px;
+            font-size: 1.2rem; /* Slightly larger font size */
+            width: 100%;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #957FEF; /* Change border color on focus */
+        }
+
+        button {
+            padding: 15px 30px; /* Increased padding */
+            border: none;
+            border-radius: 5px;
+            background-color: #424b54; /* Button background */
+            color: white;
+            font-size: 1.2rem; /* Slightly larger font size */
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #957FEF; /* Change button color on hover */
+        }
+
+        #output {
+            font-weight: bold;
+            color: #424b54; /* Output text color */
+            font-size: 1.5rem; /* Increased font size for output */
+            margin-top: 1rem; /* Spacing above output */
+            text-align: center; /* Center align output text */
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="form">
-        <h1>roman numeral converter</h1>
-        <input type="text" id="number" />
-        <button type="submit" id="convert-btn" onclick="inputToRoman()">
-          Submit
-        </button>
-        <p id="output"></p>
-      </div>
+        <div class="form">
+            <h1>Roman Numeral Converter</h1>
+            <form onsubmit="event.preventDefault(); inputToRoman();">
+                <input type="text" id="number" placeholder="Enter a number (1-3999)" required />
+                <button type="submit" id="convert-btn">
+                    Submit
+                </button>
+            </form>
+            <p id="output"></p>
+        </div>
     </div>
     <script>
-      const display = document.getElementById("output");
+        const display = document.getElementById("output");
 
-      const inputToRoman = () => {
-        const numberInput = document.getElementById("number").value;
+        const inputToRoman = () => {
+            const numberInput = document.getElementById("number").value;
 
-        const roman = [
-          "M",
-          "CM",
-          "D",
-          "CD",
-          "C",
-          "XC",
-          "L",
-          "XL",
-          "X",
-          "IX",
-          "V",
-          "IV",
-          "I",
-        ];
+            const roman = [
+                "M",
+                "CM",
+                "D",
+                "CD",
+                "C",
+                "XC",
+                "L",
+                "XL",
+                "X",
+                "IX",
+                "V",
+                "IV",
+                "I",
+            ];
 
-        const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+            const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
 
-        let number = parseInt(numberInput, 10);
+            let number = parseInt(numberInput, 10);
 
-        if (numberInput === "") {
-          display.innerText = "Please enter a valid number";
-        } else if (number < 1) {
-          display.innerText =
-            "Please enter a number greater than or equal to 1";
-        } else if (number >= 4000) {
-          display.innerText =
-            "Please enter a number less than or equal to 3999";
-        } else if (!isNaN(number) && number > 0 && number < 4000) {
-          let result = "";
-          for (let i = 0; i < values.length; i++) {
-            while (number >= values[i]) {
-              result += roman[i];
-              number -= values[i];
+            if (numberInput === "") {
+                display.innerText = "Please enter a valid number";
+            } else if (number < 1) {
+                display.innerText =
+                    "Please enter a number greater than or equal to 1";
+            } else if (number >= 4000) {
+                display.innerText =
+                    "Please enter a number less than or equal to 3999";
+            } else if (!isNaN(number) && number > 0 && number < 4000) {
+                let result = "";
+                for (let i = 0; i < values.length; i++) {
+                    while (number >= values[i]) {
+                        result += roman[i];
+                        number -= values[i];
+                    }
+                }
+                display.innerText = result;
+            } else {
+                display.innerText = "Please enter a valid number between 1 and 3999.";
             }
-          }
-          display.innerText = result;
-        } else {
-          display.innerText = "Please enter a valid number between 1 and 3999.";
-        }
-      };
+        };
     </script>
-  </body>
+</body>
 </html>

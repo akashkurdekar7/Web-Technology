@@ -48,8 +48,8 @@
       </form>
     </div>
     <script>
-      const emailInput = document.getElementById("email");
-      const passwordInput = document.getElementById("password");
+      const emailInput = document.getElementById("email").value;
+      const passwordInput = document.getElementById("password").value;
       const submitButton = document.getElementById("submit");
       const emailSuccess = document.getElementById("emailSuccess");
       const emailFail = document.getElementById("emailFail");
@@ -72,7 +72,7 @@
         let valid = true;
 
         // Email validation
-        if (emailInput.value == "") {
+        if (emailInput == "") {
           emailFail.style.display = "block";
           emailSuccess.style.display = "none";
           valid = false;
@@ -82,12 +82,12 @@
         }
 
         // Password validation
-        if (passwordInput.value === "") {
+        if (passwordInput === "") {
           passwordFail.style.display = "block";
           passwordFail2.style.display = "none";
           passwordSuccess.style.display = "none";
           valid = false;
-        } else if (!passwordReg.test(passwordInput.value)) {
+        } else if (!passwordReg.test(passwordInput)) {
           passwordFail.style.display = "none";
           passwordFail2.style.display = "block"; // Show complexity requirement
           passwordSuccess.style.display = "none";
@@ -99,7 +99,7 @@
         }
 
         if (valid) {
-          console.log("Email:", emailInput.value);
+          console.log("Email:", emailInput);
           console.log("Password:", passwordInput.value);
         }
       };

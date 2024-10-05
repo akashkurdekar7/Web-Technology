@@ -1,93 +1,154 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+/* Reset and Box Sizing */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+/* General Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+}
+
+/* Container Styles */
 .container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
 }
 
+.left {
+  padding: 2rem;
+}
+
+/* Header */
 h1 {
+  text-transform: uppercase;
   text-align: center;
-  color: #333;
+  color: black;
+  margin: 20px;
 }
 
+/* Input Container */
 .input-con {
   display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
 }
 
-/* Input styles */
+/* Input Styles */
 input[type="text"] {
-  width: calc(100% - 100px);
-  padding: 10px;
+  width: 70%;
+  padding: 12px 20px;
   font-size: 16px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #ddd;
+  border-radius: 8px 0 0 8px;
   outline: none;
+  transition: border-color 0.3s;
 }
 
+input[type="text"]:focus {
+  border-color: black;
+}
+
+/* Button Styles */
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
-  background-color: #4caf50;
+  background-color: black;
   color: white;
-  border: none;
-  border-radius: 5px;
+  border: 2px solid black;
+  border-radius: 0 8px 8px 0;
   cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: rgb(40, 40, 40);
+  border-color: black;
 }
 
-/* Content styles */
+/* Response Message Styles */
+#response {
+  text-align: center;
+  font-size: 18px;
+  margin: 2rem;
+}
+
+.success {
+  color: #28a745; /* Green */
+}
+
+.error {
+  color: #dc3545; /* Red */
+}
+
+.info {
+  color: #6c757d; /* Gray */
+}
+
+/* Content Styles */
 .content {
-  margin-top: 20px;
+  display: none;
+  margin-top: 10px;
   text-align: center;
 }
+
 .nameid {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#pname {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333333;
+}
+
+#pid {
+  font-size: 20px;
+  color: #777777;
 }
 
 .separator {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-#pname {
-  font-size: 24px;
-  font-weight: bold;
-  color: #555;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 15px;
 }
 
-#pid {
-  font-size: 18px;
-  color: #888;
-}
-
-#pweight,
-#pheight {
+.separator p {
   font-size: 16px;
-  font-weight: normal;
+  color: #555555;
+}
+
+.separator span:first-child {
+  font-weight: bold;
 }
 
 img {
-  margin-top: 10px;
-  width: 150px;
-  height: 150px;
+  margin-top: 15px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  filter: drop-shadow(2px 4px 7px black);
+  object-fit: cover;
+  border: 3px solid white;
+  filter: drop-shadow(1px 2px 10px black);
+  transition: transform 0.3s;
+}
+
+img:hover {
+  transform: scale(1.05);
 }
 
 .btn-con {
@@ -96,35 +157,227 @@ img {
 
 .btn-con h3 {
   display: inline-block;
-  margin: 0 10px;
-  font-size: 18px;
-  color: #333;
+  margin: 0 8px;
+  padding: 6px 12px;
+  font-size: 16px;
+  color: black;
+  border-radius: 20px;
   text-transform: capitalize;
 }
 
-/* Table styles */
+/* Table Styles */
 table {
+  max-width: 450px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 25px;
   border-collapse: collapse;
+  font-size: 16px;
 }
 
 thead {
-  background-color: #f8f8f8;
+  background-color: #d58936;
+  color: white;
 }
 
-thead td {
-  padding: 10px;
-  font-weight: bold;
+thead th {
+  padding: 12px;
   text-align: left;
 }
 
 tbody td {
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
 }
 
-#trName,
-#trStats {
-  background-color: #fafafa;
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pokémon Type Styles */
+
+/* Normal */
+.type-normal {
+  background-color: #a8a77a;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Fire */
+.type-fire {
+  background-color: #ee8130;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Water */
+.type-water {
+  background-color: #6390f0;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Electric */
+.type-electric {
+  background-color: #f7d02c;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Grass */
+.type-grass {
+  background-color: #7ac74c;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Ice */
+.type-ice {
+  background-color: #96d9d6;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Fighting */
+.type-fighting {
+  background-color: #c22e28;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Poison */
+.type-poison {
+  background-color: #a33ea1;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Ground */
+.type-ground {
+  background-color: #e2bf65;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Flying */
+.type-flying {
+  background-color: #a98ff3;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Psychic */
+.type-psychic {
+  background-color: #f95587;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Bug */
+.type-bug {
+  background-color: #a6b91a;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Rock */
+.type-rock {
+  background-color: #b6a136;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Ghost */
+.type-ghost {
+  background-color: #735797;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Dragon */
+.type-dragon {
+  background-color: #6f35fc;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Dark */
+.type-dark {
+  background-color: #705746;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Steel */
+.type-steel {
+  background-color: #b7b7ce;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Fairy */
+.type-fairy {
+  background-color: #d685ad;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .separator {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  input[type="text"] {
+    width: 60%;
+  }
 }

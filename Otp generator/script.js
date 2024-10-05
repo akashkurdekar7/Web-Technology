@@ -13,6 +13,7 @@ let optTimeOut = null;
 const otpGenerator = () => {
   otp = Math.floor(1000 + Math.random() * 9000);
   console.log(`Generated OTP: ${otp}`);
+  console.log("Generated OTP:", 1000 + Math.random() * 9000);
 
   if (otpTimeout) {
     clearTimeout(otpTimeout);
